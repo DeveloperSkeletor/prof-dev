@@ -7,11 +7,13 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 
 @Configuration
-@ComponentScan("com.skelly.learn_spring.examples.a0")
+@ComponentScan
 public class SimpleSpringContextLauncherApplication {
 
     public static void main(String[] args) {
-        var context = new AnnotationConfigApplicationContext(SimpleSpringContextLauncherApplication.class);
-        Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+        try(
+        var context = new AnnotationConfigApplicationContext(SimpleSpringContextLauncherApplication.class)){
+            Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+        }
     }
 }
